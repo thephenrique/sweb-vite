@@ -1,0 +1,52 @@
+{
+  "name": "sweb-vite",
+  "version": "0.0.1",
+  "description": "Small Web UI Framework: Vite Plugin",
+  "license": "MIT",
+  "author": "Pedro Henrique <phsilva.net@gmail.com>",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "pnpm run clean && pnpm run build:js && pnpm run build:types",
+    "clean": "node -e \"import('node:fs').then(fs => fs.rmSync('dist', { recursive: true, force: true }))\"",
+    "build:js": "rolldown --config",
+    "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
+    "test": "node --import tsx --test",
+    "type-check": "tsc --project tsconfig.check.json",
+    "lint-check": "oxlint",
+    "format-check": "oxfmt --check",
+    "knip-check": "knip"
+  },
+  "dependencies": {
+    "@babel/core": "^7.29.0",
+    "sweb-jsx": "file:../sweb-jsx"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/node": "^25.5.0",
+    "knip": "^5.87.0",
+    "oxfmt": "^0.41.0",
+    "oxlint": "^1.56.0",
+    "rolldown": "1.0.0-rc.9",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.0"
+  },
+  "peerDependencies": {
+    "vite": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@10.30.3"
+}
